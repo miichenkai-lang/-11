@@ -1,5 +1,7 @@
 const http = require('http');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 
 const MAGIC = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
 const PORT = process.env.PORT || 8080;
@@ -9,6 +11,14 @@ const queue = [];
 let idc = 1;
 
 const server = http.createServer((req, res) => {
+  if (req.url === '/' || req.url === '/index.html') {
+    fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
+      if (err) { res.writeHead(500); res.end('error'); return; }
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(data);
+    });
+    return;
+  }
   res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
   res.end('飛行航天 對戰伺服器 OK');
 });

@@ -1,0 +1,12 @@
+{
+  "name": "flight-game",
+  "version": "1.0.0",
+  "description": "飛行航天 - 3D 空戰遊戲 + 真人對戰 WebSocket 伺服器（零依賴）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
